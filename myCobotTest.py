@@ -192,12 +192,14 @@ class myCobotTest(OpenRTM_aist.DataFlowComponentBase):
     #
     #
     def onExecute(self, ec_id):
-        middle = self._JARA_ARM_ManipulatorCommonInterface_Middle._ptr()
-        common = self._JARA_ARM_ManipulatorCommonInterface_Common._ptr()
         print("input command:")
         s = input()
 
         commands = s.split(" ")
+
+        middle = self._JARA_ARM_ManipulatorCommonInterface_Middle._ptr()
+        common = self._JARA_ARM_ManipulatorCommonInterface_Common._ptr()
+
         if commands[0] == "moveAbs":
             ret = middle.moveLinearCartesianAbs(
                 JARA_ARM.CarPosWithElbow([[1, 0, 0, float(commands[1])], [0, 1, 0, float(commands[2])], [0, 0, 1, float(commands[3])]], 0,  0))
